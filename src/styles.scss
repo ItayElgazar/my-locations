@@ -18,7 +18,7 @@ body {
 }
 
 .list-wrapper {
-  width: 900px;
+  max-width: 900px;
   padding: 25px;
   margin: auto;
 }
@@ -26,6 +26,10 @@ body {
 .add-btn {
   position: absolute;
   top: 150px;
+}
+
+.input-width {
+  width: 100%;
 }
 
 
