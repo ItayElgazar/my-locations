@@ -1,0 +1,16 @@
+<div class="locations-list">
+<nav class="card card__card-row" mat-tab-nav-bar>
+  <a mat-tab-link
+     routerLink='/categories'
+     routerLinkActive #rlaa="routerLinkActive"
+     [active]="rlaa.isActive">
+    Categories
+  </a><a mat-tab-link
+     routerLink='/locations'
+     routerLinkActive #rlab="routerLinkActive"
+     [active]="rlab.isActive">
+  Locations
+  </a>
+</nav>
+
+</div>
