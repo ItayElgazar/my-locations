@@ -1,3 +1,16 @@
-<p>
-  location works!
-</p>
+
+<div class="card">
+  <mat-card class="card__card-row">
+    <mat-grid-list cols="12" rowHeight="30px">
+      <mat-grid-tile colspan="4">
+        {{location.category.name}}
+      </mat-grid-tile>
+      <mat-grid-tile colspan="4">
+        {{location.coordinates}}
+      </mat-grid-tile>
+      <mat-grid-tile colspan="4">
+        {{location.address}}
+      </mat-grid-tile>
+    </mat-grid-list>
+  </mat-card>
+</div>

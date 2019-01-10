@@ -1,3 +1,5 @@
 export class Category {
-  name: string;
+  constructor(public name: string) {
+  }
+
 }

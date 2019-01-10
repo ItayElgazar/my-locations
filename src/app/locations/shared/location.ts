@@ -5,13 +5,18 @@ export class Location {
   address: string;
   coordinates: string;
   category: Category;
-  latitude: number;
-  longitude: number;
+  private readonly locations: number[];
 
-  constructor(partial: Partial<Location>) {
-    Object.assign(this, location);
-    const locations = this.coordinates.split(',');
-    this.latitude = Number(locations[0]);
-    this.longitude = Number(locations[1]);
+  constructor(data: Partial<Location>) {
+    Object.assign(this, data);
+    this.locations = data.coordinates.split(',').map(l => +l);
+  }
+
+  get latitude(): number {
+    return this.locations[0];
+  }
+
+  get longitude(): number {
+    return this.locations[1];
   }
 }

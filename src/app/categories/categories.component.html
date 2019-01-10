@@ -1,3 +1,13 @@
-<p>
-  categories works!
-</p>
+<div class="list-wrapper">
+  <mat-card class="card">
+    <mat-grid-list cols="12" rowHeight="30px">
+      <mat-grid-tile colspan="12">
+        Name
+      </mat-grid-tile>
+    </mat-grid-list>
+  </mat-card>
+  <div *ngFor="let category of categories$ | async">
+    <app-category [category]="category"></app-category>
+  </div>
+  <button mat-mini-fab color="warn" class="add-btn" routerLink="add"><mat-icon>add</mat-icon></button>
+</div>

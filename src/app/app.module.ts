@@ -3,16 +3,23 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { LocationComponent } from './location/location/location.component';
+import {LocationsModule} from './locations/locations.module';
+import {CategoriesModule} from './categories/categories.module';
+import {NoopAnimationsModule} from '@angular/platform-browser/animations';
+import {ActionsModule} from './shared/actions/actions.module';
 
 @NgModule({
   declarations: [
     AppComponent,
-    LocationComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    LocationsModule,
+    CategoriesModule,
+    ActionsModule,
+    NoopAnimationsModule,
+
   ],
   providers: [],
   bootstrap: [AppComponent]

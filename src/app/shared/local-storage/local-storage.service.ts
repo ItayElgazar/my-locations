@@ -9,7 +9,7 @@ export class LocalStorageService implements LocalStorage {
   constructor() {
   }
 
-  set(key: string, value: Object): boolean {
+  set<T>(key: string, value: T): boolean {
     localStorage.setItem(key, JSON.stringify(value));
     return true;
   }

@@ -1,1 +1,32 @@
 /* You can add global styles to this file, and also import other style files */
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+body {
+  background: #252525;
+}
+
+.card {
+  background: #1b251b;
+  color: #d4e8ff;
+  &__card-row {
+    color: #fff;
+    background: #151e25;
+    margin-top: 5px;
+  }
+  a {
+    color: #fff;
+  }
+}
+
+.list-wrapper {
+  width: 900px;
+  padding: 25px;
+  margin: auto;
+}
+
+.add-btn {
+  position: absolute;
+  top: 150px;
+}
+
+
+

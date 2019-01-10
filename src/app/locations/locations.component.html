@@ -1,3 +1,21 @@
-<p>
-  locations works!
-</p>
+<div class="list-wrapper">
+  <mat-card class="card">
+  <mat-grid-list cols="12" rowHeight="30px">
+    <mat-grid-tile colspan="4">
+      Category
+    </mat-grid-tile>
+    <mat-grid-tile colspan="4">
+      Coordinates
+    </mat-grid-tile>
+    <mat-grid-tile colspan="4">
+      Address
+    </mat-grid-tile>
+  </mat-grid-list>
+  </mat-card>
+  <div *ngFor="let location of locations$ | async">
+    <app-location [location]="location"></app-location>
+  </div>
+  <button mat-mini-fab color="warn" class="add-btn" routerLink="add"><mat-icon>add</mat-icon></button>
+</div>
+
+
