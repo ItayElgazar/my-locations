@@ -1,5 +1,19 @@
-<div class="list-wrapper">
-<mat-form-field class="input-width">
-  <input matInput  placeholder="Enter some input">
-</mat-form-field>
+<div class="list-wrapper add-category">
+  <h2 class="main-title">Add New Category</h2>
+  <mat-card class="card">
+    <form [formGroup]="categoryForm" (ngSubmit)="addCategory()">
+      <mat-form-field color="accent" class="full-width">
+        <input formControlName="categoryName" matInput placeholder="Category Name">
+      </mat-form-field>
+      <mat-error *ngIf="categoryForm.errors?.exists">Category Already exists.</mat-error>
+
+      <mat-error *ngIf="(categoryForm.dirty || categoryForm.touched)
+                        && !categoryForm.errors
+                        && categoryForm.invalid">All fields are required.</mat-error>
+    </form>
+  </mat-card>
+
+  <button mat-raised-button color="primary" [disabled]="categoryForm.invalid" (click)="addCategory()">Add</button>
+
+
 </div>
