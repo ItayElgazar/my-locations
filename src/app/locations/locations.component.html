@@ -1,21 +1,56 @@
 <div class="list-wrapper">
-  <mat-card class="card">
-  <mat-grid-list cols="12" rowHeight="30px">
-    <mat-grid-tile colspan="4">
-      Category
-    </mat-grid-tile>
-    <mat-grid-tile colspan="4">
-      Coordinates
-    </mat-grid-tile>
-    <mat-grid-tile colspan="4">
-      Address
-    </mat-grid-tile>
-  </mat-grid-list>
+  <mat-card class="card__card-row">
+    <div class="filters">
+      <div class="filters__filter">
+        Sort (A-Z) -
+        <button mat-icon-button>
+          <mat-icon (click)="sort()">sort_by_alpha</mat-icon>
+        </button>
+      </div>
+
+      <div class="filters__filter">
+        <mat-form-field>
+          <mat-select [(ngModel)]="orderCategory" placeholder="Select Category">
+            <mat-option *ngFor="let category of categories$ | async"
+                        [value]="category.name">{{category.name}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+
+      <div class="filters__filter">
+        <button mat-icon-button (click)="reset()">
+          <mat-icon>refresh</mat-icon>
+        </button>
+      </div>
+    </div>
+
+
   </mat-card>
-  <div *ngFor="let location of locations$ | async">
-    <app-location [location]="location"></app-location>
+  <mat-card class="card">
+    <mat-grid-list cols="12" rowHeight="30px">
+      <mat-grid-tile colspan="2">
+        Name
+      </mat-grid-tile>
+      <mat-grid-tile colspan="2">
+        Category
+      </mat-grid-tile>
+      <mat-grid-tile colspan="3">
+        Coordinates
+      </mat-grid-tile>
+      <mat-grid-tile colspan="3">
+        Address
+      </mat-grid-tile>
+      <mat-grid-tile colspan="2">
+        #
+      </mat-grid-tile>
+    </mat-grid-list>
+  </mat-card>
+  <div *ngFor="let location of locations$ | categoryOrder: orderCategory | async">
+    <app-location (deleteLocation)="delete($event)" [location]="location"></app-location>
   </div>
-  <button mat-mini-fab color="warn" class="add-btn" routerLink="add"><mat-icon>add</mat-icon></button>
+  <button mat-fab color="warn" class="add-btn" routerLink="add">
+    <mat-icon>add</mat-icon>
+  </button>
 </div>
 
 

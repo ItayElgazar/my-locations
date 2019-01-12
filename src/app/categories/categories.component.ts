@@ -1,6 +1,5 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Observable, Subject} from 'rxjs';
-import {Location} from '../locations/shared/location';
 import {Category} from './shared/category';
 import {CategoriesService} from './shared/categories.service';
 import {takeUntil} from 'rxjs/operators';
@@ -10,7 +9,7 @@ import {takeUntil} from 'rxjs/operators';
   templateUrl: './categories.component.html',
   styleUrls: ['./categories.component.scss']
 })
-export class CategoriesComponent implements OnInit, OnDestroy{
+export class CategoriesComponent implements OnInit, OnDestroy {
 
   categories$: Observable<Category[]>;
   destroyed$ = new Subject();

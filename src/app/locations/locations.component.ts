@@ -3,7 +3,8 @@ import {LocationsService} from './shared/locations.service';
 import {Category} from '../categories/shared/category';
 import {Location} from './shared/location';
 import {Observable, Subject} from 'rxjs';
-import {takeUntil} from 'rxjs/operators';
+import {takeUntil, map} from 'rxjs/operators';
+import {CategoriesService} from '../categories/shared/categories.service';
 
 @Component({
   selector: 'app-locations',
@@ -13,27 +14,41 @@ import {takeUntil} from 'rxjs/operators';
 export class LocationsComponent implements OnInit, OnDestroy {
 
   locations$: Observable<Location[]>;
-  destroyed$ = new Subject();
-
-  constructor(private locationsService: LocationsService) {
+  categories$: Observable<Category[]>;
+  destroyedLocations$ = new Subject();
+  destroyedCategories$ = new Subject();
+  orderCategory = null;
+  constructor(private locationsService: LocationsService,
+              private categoriesService: CategoriesService) {
   }
 
   ngOnInit() {
-    this.locations$ = this.locationsService.getLocations().pipe(takeUntil(this.destroyed$));
+    this.locations$ = this.getLocations().pipe(takeUntil(this.destroyedLocations$));
+    this.categories$ = this.categoriesService.getCategories().pipe(takeUntil(this.destroyedCategories$));
   }
 
-  add() {
-    this.locationsService.addLocation(new Location({
-      name: `Itay's Home`,
-      address: 'Raadhuisstraat 17',
-      coordinates: '52.3732327,4.8899359',
-      category: new Category('Developer')
-    }));
+  delete(id: number): void {
+    this.locationsService.deleteLocation(id);
   }
 
+  sort(): void {
+    this.locations$ = this.locations$
+      .pipe(map(locations =>
+        locations.sort((a, b) => a.name < b.name ? -1 : (a.name > b.name ? 1 : 0))));
+  }
+
+  reset(): void {
+    this.orderCategory = null;
+  }
+
+  getLocations(): Observable<Location[]> {
+    return this.locationsService.getLocations()
+      .pipe(takeUntil(this.destroyedLocations$));
+  }
 
   ngOnDestroy(): void {
-    this.destroyed$.unsubscribe();
+    this.destroyedLocations$.unsubscribe();
+    this.destroyedCategories$.unsubscribe();
   }
 
 }

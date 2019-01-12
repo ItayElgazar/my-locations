@@ -1,0 +1,17 @@
+<div *ngIf="categoryForm" class="list-wrapper add-category">
+  <h2 class="main-title">Edit {{category.name}}</h2>
+  <mat-card class="card">
+    <form [formGroup]="categoryForm" (ngSubmit)="saveChanges()">
+      <mat-form-field color="accent" class="full-width">
+        <input formControlName="categoryName" matInput placeholder="Category Name">
+      </mat-form-field>
+      <mat-error *ngIf="categoryForm.errors?.unexpectedError">Unexpected error - the category could not be found.
+      </mat-error>
+
+    </form>
+  </mat-card>
+
+  <button mat-raised-button color="primary" [disabled]="categoryForm.invalid" (click)="saveChanges()">Save</button>
+
+
+</div>

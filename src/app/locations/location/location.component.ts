@@ -1,4 +1,5 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import { Location } from '../shared/location';
 
 @Component({
   selector: 'app-location',
@@ -8,9 +9,23 @@ import {Component, Input, OnInit} from '@angular/core';
 export class LocationComponent implements OnInit {
 
   @Input() location: Location;
-  constructor() { }
+  @Output() deleteLocation: EventEmitter<number> = new EventEmitter();
+  editLink: string;
+  map: boolean;
+  constructor() {
+    this.map = false;
+  }
 
   ngOnInit() {
+    this.editLink = `edit/${this.location.id}`;
+  }
+
+  delete() {
+    this.deleteLocation.emit(this.location.id);
+  }
+
+  mapToggle() {
+    this.map = !this.map;
   }
 
 }

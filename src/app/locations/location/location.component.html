@@ -2,15 +2,28 @@
 <div class="card">
   <mat-card class="card__card-row">
     <mat-grid-list cols="12" rowHeight="30px">
-      <mat-grid-tile colspan="4">
+      <mat-grid-tile colspan="2">
+        {{location.name}}
+      </mat-grid-tile>
+      <mat-grid-tile colspan="2">
         {{location.category.name}}
       </mat-grid-tile>
-      <mat-grid-tile colspan="4">
+      <mat-grid-tile colspan="3">
         {{location.coordinates}}
       </mat-grid-tile>
-      <mat-grid-tile colspan="4">
+      <mat-grid-tile colspan="3">
         {{location.address}}
       </mat-grid-tile>
+      <mat-grid-tile colspan="2">
+        <div class="action-items">
+          <button mat-icon-button (click)="mapToggle()"><mat-icon class="action-items__action-item">visibility</mat-icon></button>
+          <button mat-icon-button [routerLink]="editLink"><mat-icon class="action-items__action-item">edit</mat-icon></button>
+          <button mat-icon-button (click)="delete()"><mat-icon class="action-items__action-item">delete</mat-icon></button>
+        </div>
+      </mat-grid-tile>
     </mat-grid-list>
+    <div *ngIf="map">
+      <agm-map [latitude]="location.latitude" [longitude]="location.longitude"></agm-map>
+    </div>
   </mat-card>
 </div>

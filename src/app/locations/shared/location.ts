@@ -5,18 +5,19 @@ export class Location {
   address: string;
   coordinates: string;
   category: Category;
+  id: number;
   private readonly locations: number[];
 
   constructor(data: Partial<Location>) {
     Object.assign(this, data);
-    this.locations = data.coordinates.split(',').map(l => +l);
+    this.id = new Date().getTime();
   }
-
+w
   get latitude(): number {
-    return this.locations[0];
+    return Number(this.coordinates.split(',')[0]);
   }
 
   get longitude(): number {
-    return this.locations[1];
+    return Number(this.coordinates.split(',')[1]);
   }
 }

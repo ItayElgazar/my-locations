@@ -2,3 +2,15 @@
   background: #151e25;
   color: #fff;
 }
+
+.filters {
+  display: flex;
+  width: 100%;
+  justify-content: space-evenly;
+  &__filter {
+    //border-right: 1px solid #293429;
+    &:last-child {
+      border: none;
+    }
+  }
+}

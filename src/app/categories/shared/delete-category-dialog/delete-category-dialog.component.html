@@ -1,0 +1,9 @@
+<h3 mat-dialog-title>Delete</h3>
+<div mat-dialog-content>
+  <p>The category is linked with locations.</p>
+  <p>This action will delete the category and it's locations</p>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="noClick()">No Thanks</button>
+  <button mat-button cdkFocusInitial [mat-dialog-close]="true">Delete</button>
+</div>
