@@ -1,3 +1,26 @@
-<p>
-  add-location works!
-</p>
+<div class="list-wrapper add-category">
+  <h2 class="main-title">Add New Location</h2>
+  <mat-card class="card">
+    <form [formGroup]="locationForm" (ngSubmit)="addLocation()">
+      <mat-form-field color="accent" class="full-width">
+        <input formControlName="name" matInput placeholder="Name">
+      </mat-form-field>
+      <mat-form-field color="accent" class="full-width">
+        <input formControlName="address" matInput placeholder="Address">
+      </mat-form-field>
+      <mat-form-field color="accent" class="full-width">
+        <input formControlName="coordinates" matInput placeholder="Coordinates">
+      </mat-form-field>
+      <mat-form-field class="full-width">
+        <input type="text" matInput formControlName="category" [matAutocomplete]="auto" placeholder="Choose Category">
+      </mat-form-field>
+
+      <mat-autocomplete #auto="matAutocomplete">
+        <mat-option *ngFor="let category of categories$ | async " [value]="category.name">{{category.name}}</mat-option>
+      </mat-autocomplete>
+    </form>
+  </mat-card>
+
+  <button mat-raised-button color="primary" (click)="addLocation()">Add</button>
+
+</div>
