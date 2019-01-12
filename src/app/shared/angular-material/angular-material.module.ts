@@ -2,12 +2,13 @@ import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {NoopAnimationsModule} from '@angular/platform-browser/animations';
 import {
+  MatAutocompleteModule,
   MatButtonModule,
   MatCardModule,
-  MatCheckboxModule,
+  MatCheckboxModule, MatDialogModule,
   MatFormFieldModule,
   MatGridListModule,
-  MatIconModule, MatInputModule,
+  MatIconModule, MatInputModule, MatSelectModule,
   MatTabsModule
 } from '@angular/material';
 
@@ -20,6 +21,9 @@ const modules =
     MatTabsModule,
     MatFormFieldModule,
     MatInputModule,
+    MatAutocompleteModule,
+    MatDialogModule,
+    MatSelectModule,
   ];
 
 @NgModule({
