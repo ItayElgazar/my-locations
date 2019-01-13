@@ -18,12 +18,13 @@ export class LocationsComponent implements OnInit, OnDestroy {
   destroyedLocations$ = new Subject();
   destroyedCategories$ = new Subject();
   orderCategory = null;
+
   constructor(private locationsService: LocationsService,
               private categoriesService: CategoriesService) {
   }
 
   ngOnInit() {
-    this.locations$ = this.getLocations().pipe(takeUntil(this.destroyedLocations$));
+    this.locations$ = this.locationsService.getLocations().pipe(takeUntil(this.destroyedLocations$));
     this.categories$ = this.categoriesService.getCategories().pipe(takeUntil(this.destroyedCategories$));
   }
 
@@ -39,11 +40,6 @@ export class LocationsComponent implements OnInit, OnDestroy {
 
   reset(): void {
     this.orderCategory = null;
-  }
-
-  getLocations(): Observable<Location[]> {
-    return this.locationsService.getLocations()
-      .pipe(takeUntil(this.destroyedLocations$));
   }
 
   ngOnDestroy(): void {
