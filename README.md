@@ -2,7 +2,7 @@
 A quick & simple implementation with Angular 7. 
 
 ### What's left to be done:
-- I had no time to write unit-tests but in real life it's defenitly necessary :)
+- unit-tests 
 
 ### Some important information:
 - In my opinion, comments are necessary only if the code is not readable
