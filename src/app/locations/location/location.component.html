@@ -22,7 +22,7 @@
         </div>
       </mat-grid-tile>
     </mat-grid-list>
-    <div *ngIf="map">
+    <div *ngIf="showMap">
       <agm-map [latitude]="location.latitude" [longitude]="location.longitude"></agm-map>
     </div>
   </mat-card>

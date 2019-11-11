@@ -1,20 +1,19 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Location } from '../shared/location';
 
 @Component({
   selector: 'app-location',
   templateUrl: './location.component.html',
-  styleUrls: ['./location.component.scss']
+  styleUrls: ['./location.component.scss'],
+ changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class LocationComponent implements OnInit {
 
   @Input() location: Location;
   @Output() deleteLocation: EventEmitter<number> = new EventEmitter();
   editLink: string;
-  map: boolean;
-  constructor() {
-    this.map = false;
-  }
+  showMap = false;
+
 
   ngOnInit() {
     this.editLink = `edit/${this.location.id}`;
@@ -25,7 +24,7 @@ export class LocationComponent implements OnInit {
   }
 
   mapToggle() {
-    this.map = !this.map;
+    this.showMap = !this.showMap;
   }
 
 }

@@ -11,21 +11,15 @@ import {CategoriesService} from '../categories/shared/categories.service';
   templateUrl: './locations.component.html',
   styleUrls: ['./locations.component.scss']
 })
-export class LocationsComponent implements OnInit, OnDestroy {
+export class LocationsComponent implements OnDestroy {
 
-  locations$: Observable<Location[]>;
-  categories$: Observable<Category[]>;
-  destroyedLocations$ = new Subject();
-  destroyedCategories$ = new Subject();
+  private destroy$: Subject<void> = new Subject<void>();
+  locations$: Observable<Location[]> = this.locationsService.getLocations().pipe(takeUntil(this.destroy$));
+  categories$: Observable<Category[]> = this.categoriesService.getCategories().pipe(takeUntil(this.destroy$));
   orderCategory = null;
 
   constructor(private locationsService: LocationsService,
               private categoriesService: CategoriesService) {
-  }
-
-  ngOnInit() {
-    this.locations$ = this.locationsService.getLocations().pipe(takeUntil(this.destroyedLocations$));
-    this.categories$ = this.categoriesService.getCategories().pipe(takeUntil(this.destroyedCategories$));
   }
 
   delete(id: number): void {
@@ -43,8 +37,8 @@ export class LocationsComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.destroyedLocations$.unsubscribe();
-    this.destroyedCategories$.unsubscribe();
+    this.destroy$.complete();
+    this.destroy$.next();
   }
 
 }
